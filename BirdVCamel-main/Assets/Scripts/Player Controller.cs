@@ -59,6 +59,14 @@ public class PlayerController : MonoBehaviour
             mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, targetPosition, Time.deltaTime * 5f);
         }
     }
+
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawLine(transform.position, transform.forward * 5f);
+    }
 }
 
 
