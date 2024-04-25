@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerInteraction : MonoBehaviour
 {
     public int health = 10000;
+    public Slider slider;
     private Animator anim;
     private void Start()
+   
     {
         anim = GetComponent<Animator>();
+        slider.maxValue = health;
     }
 
 
@@ -26,13 +30,16 @@ public class TowerInteraction : MonoBehaviour
 
     void DamageTower()
     {
-        health -= 635;
+        slider.value = health;
+        health -= 500;
         Debug.Log("Tower health: " + health);
 
         // Check if tower health is zero
         if (health <= 0)
         {
             health = 0;
+
+            Destroy(slider.gameObject);
 
             anim.SetTrigger("Death");
             
