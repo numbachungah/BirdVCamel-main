@@ -39,8 +39,6 @@ public class TowerInteraction : MonoBehaviour
         {
             health = 0;
 
-            Destroy(slider.gameObject);
-
             anim.SetTrigger("Death");
             
 

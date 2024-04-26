@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
         Vector2 movement = new Vector2(moveHorizontal, moveVertical).normalized;
         rb.velocity = movement * speed;
 
+
         // Shooting
         if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
         {
