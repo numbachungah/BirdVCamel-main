@@ -34,22 +34,22 @@ public class EnemySpawner : MonoBehaviour
         switch (camelSpawned)
         {
             case 0:
-                spawnRate = 25;
-                break;
-            case 6:
-                spawnRate = 18;
-                break;
-            case 10:
                 spawnRate = 15;
                 break;
-            case 13: 
+            case 6:
                 spawnRate = 13;
                 break;
-            case 14:
+            case 10:
+                spawnRate = 12;
+                break;
+            case 13: 
                 spawnRate = 10;
                 break;
+            case 14:
+                spawnRate = 9;
+                break;
             case 20:
-                spawnRate = 8;
+                spawnRate = 2;
                 break;
             case 35:
                 spawnRate = 7;

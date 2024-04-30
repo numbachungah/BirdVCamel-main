@@ -18,9 +18,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-
-
-        healthBar.fillAmount = currentHealth / 5f;
+        UpdateHealthUI();
 
         if (currentHealth <= 0)
         {
@@ -30,14 +28,26 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        // Handle player death here
+        // Handle player death
         Debug.Log("Player died!");
-        // You can add game over logic or respawn logic here
+       
 
         anim.SetTrigger("Death");
+    }
 
+    public void IncreaseMaxHealth(int amount)
+    {
+        currentHealth = maxHealth;
+        UpdateHealthUI();
+    }
 
-
+    void UpdateHealthUI()
+    {
+        if (healthBar != null)
+        {
+            healthBar.fillAmount = (float)currentHealth / maxHealth;
+        }
     }
 }
+
 

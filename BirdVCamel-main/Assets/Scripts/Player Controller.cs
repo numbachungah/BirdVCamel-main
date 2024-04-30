@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 5f; // Player movement speed
+    public float baseSpeed = 5f; // Base speed of the player
     public float bulletSpeed = 10f; // Speed of bullets fired
     public GameObject bulletPrefab; // Prefab of the bullet
     public Transform firePoint; // Point from where the bullets will be fired
@@ -14,11 +14,18 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Camera mainCamera;
     private SpriteRenderer mainSpriteRenderer;
+
+    private float currentSpeed; // Current speed of the player
+    private float speedBoostAmount; // Amount to increase speed by
+    private float speedBoostDuration; // Duration of speed boost
+    private float speedBoostTimer; // Timer for speed boost
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         mainCamera = Camera.main;
-        mainSpriteRenderer = GetComponent<SpriteRenderer>(); 
+        mainSpriteRenderer = GetComponent<SpriteRenderer>();
+        currentSpeed = baseSpeed;
     }
 
     void Update()
@@ -29,8 +36,7 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log(moveHorizontal + " " + moveVertical);
         Vector2 movement = new Vector2(moveHorizontal, moveVertical).normalized;
-        rb.velocity = movement * speed;
-
+        rb.velocity = movement * currentSpeed;
 
         // Shooting
         if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
@@ -40,7 +46,18 @@ public class PlayerController : MonoBehaviour
         }
 
         if (moveHorizontal > 0) { mainSpriteRenderer.flipX = true; }
-        else {  mainSpriteRenderer.flipX = false; }
+        else { mainSpriteRenderer.flipX = false; }
+
+        // Handle speed boost timer
+        if (speedBoostTimer > 0)
+        {
+            speedBoostTimer -= Time.deltaTime;
+            if (speedBoostTimer <= 0)
+            {
+                // Speed boost duration ended, reset speed
+                currentSpeed = baseSpeed;
+            }
+        }
     }
 
     void Shoot()
@@ -61,6 +78,30 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void ApplySpeedBoost(float amount, float duration)
+    {
+        speedBoostAmount = amount;
+        speedBoostDuration = duration;
+        speedBoostTimer = duration;
+
+        // Increase speed
+        currentSpeed += speedBoostAmount;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("SpeedPowerUp"))
+        {
+            // Apply speed boost when colliding with speed power-up
+            SpeedPowerUp speedPowerUp = other.GetComponent<SpeedPowerUp>();
+            if (speedPowerUp != null)
+            {
+                ApplySpeedBoost(speedPowerUp.speedIncreaseAmount, speedPowerUp.duration);
+            }
+            // Disable the power-up object
+            other.gameObject.SetActive(false);
+        }
+    }
 
     private void OnDrawGizmosSelected()
     {
@@ -69,6 +110,3 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.forward * 5f);
     }
 }
-
-
-
