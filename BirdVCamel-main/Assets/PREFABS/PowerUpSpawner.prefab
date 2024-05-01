@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f4e92ea43c62340820b3dce7bbc914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUps: []
-  spawnPosition: {x: 0, y: 0, z: 0}
+  powerUps:
+  - {fileID: 2146722764003024153, guid: 7c5221cd40da97947bccd1cc05c8c916, type: 3}
+  - {fileID: 2146722764003024153, guid: 6767feef5ba542247bfe045dec7f6dc2, type: 3}
+  - {fileID: 2146722764003024153, guid: ff6a4da47140f6a4aaf10617abe7b890, type: 3}
