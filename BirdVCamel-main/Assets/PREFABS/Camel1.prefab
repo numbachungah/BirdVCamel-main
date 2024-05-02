@@ -107,9 +107,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 840865081, guid: 6b79c15dd87f8584fa620b0cab25dda3, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.30729797, g: 0.34895977, b: 0.7830189, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -213,10 +213,10 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4047610957921422388, guid: 0a5c3de91fd6b95419559e5597543e84, type: 3}
   target: {fileID: 4179494051775665605, guid: f09d43a02be4bf74d9021e558ab0fa7c, type: 3}
   bulletSpeed: 10
-  shootInterval: 1.5
+  shootInterval: 0.5
   chargeProbability: 0.35
   bulletDamage: 1
-  chargedBulletDamage: 3
+  chargedBulletDamage: 5
 --- !u!58 &5930285228940840980
 CircleCollider2D:
   m_ObjectHideFlags: 0

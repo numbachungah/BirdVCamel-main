@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -9,30 +10,51 @@ public class PlayerHealth : MonoBehaviour
     private int currentHealth;
     public Animator anim;
     public Image healthBar;
+    private bool isDead = false;
 
-    void Start()
+    private void Start()
     {
         currentHealth = maxHealth;
     }
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        UpdateHealthUI();
-
-        if (currentHealth <= 0)
+        if (!isDead)
         {
-            Die();
+            currentHealth -= damage;
+            UpdateHealthUI();
+
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 
-    void Die()
+    private void Die()
     {
+        isDead = true;
         // Handle player death
         Debug.Log("Player died!");
-       
 
+        // Disable player controls
+        // Example: if player movement script is attached to the player object
+        PlayerController playerMovement = GetComponent<PlayerController>();
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = false;
+        }
+
+        // Play death animation
         anim.SetTrigger("Death");
+
+        // Invoke the method to load the game over scene after 4 seconds
+        Invoke("LoadGameOverScene", 2.5f);
+    }
+
+    private void LoadGameOverScene()
+    {
+        SceneManager.LoadScene("Game Over");
     }
 
     public void IncreaseMaxHealth(int amount)
@@ -41,7 +63,7 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthUI();
     }
 
-    void UpdateHealthUI()
+    private void UpdateHealthUI()
     {
         if (healthBar != null)
         {
@@ -49,5 +71,4 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 }
-
 
