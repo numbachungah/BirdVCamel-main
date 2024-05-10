@@ -37,25 +37,25 @@ public class EnemySpawner : MonoBehaviour
                 spawnRate = 6;
                 break;
             case 6:
-                spawnRate = 13;
+                spawnRate = 11;
                 break;
             case 10:
-                spawnRate = 12;
+                spawnRate = 9;
                 break;
             case 13: 
-                spawnRate = 10;
+                spawnRate = 7;
                 break;
             case 14:
-                spawnRate = 9;
+                spawnRate = 6;
                 break;
             case 20:
                 spawnRate = 2;
                 break;
             case 35:
-                spawnRate = 7;
+                spawnRate = 5;
                 break;
             case 38:
-                spawnRate = 5;
+                spawnRate = 4.5f;
                 break;
             case 50: 
                 spawnRate = 4;

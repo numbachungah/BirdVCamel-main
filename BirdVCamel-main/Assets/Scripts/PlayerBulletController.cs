@@ -16,10 +16,10 @@ public class PlayerBulletController : MonoBehaviour
         if (enemy != null)
         {
             enemy.TakeDamage(damageAmount);
-          
+            
         }
         
-        Destroy(gameObject); // Destroy the bullet upon collision
+         Destroy(gameObject);// Destroy the bullet upon collision
     }
 }
 

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TowerInteraction : MonoBehaviour
@@ -8,6 +10,8 @@ public class TowerInteraction : MonoBehaviour
     public int health = 10000;
     public Slider slider;
     private Animator anim;
+    public GameObject deathCam;
+    public GameObject moveCam;
     private void Start()
    
     {
@@ -45,8 +49,26 @@ public class TowerInteraction : MonoBehaviour
             Debug.Log("Tower destroyed!");
             // Implement game over logic here
 
+          deathCam.SetActive(true);
+          moveCam.SetActive(false);
+
+            StartCoroutine(WaitForDeath());
+
+
 
         }
+    }
+    private void LoadGameOverScene()
+    {
+        SceneManager.LoadScene("Game Over");
+    }
+
+
+    IEnumerator WaitForDeath()
+    {
+        yield return new WaitForSeconds(3);
+
+        LoadGameOverScene();
     }
 }
 

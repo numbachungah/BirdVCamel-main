@@ -9,7 +9,7 @@ public class PowerUpSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnPowerUp", 5, 5);
+        InvokeRepeating("SpawnPowerUp", 5, 10);
     }
 
     // Update is called once per frame
