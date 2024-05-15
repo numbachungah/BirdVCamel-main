@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private float speedBoostAmount; // Amount to increase speed by
     private float speedBoostDuration; // Duration of speed boost
     private float speedBoostTimer; // Timer for speed boost
+    private float horizontal, vertical;
+    private bool isFiring;
 
     void Start()
     {
@@ -31,21 +35,20 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Player movement
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
 
-        Debug.Log(moveHorizontal + " " + moveVertical);
-        Vector2 movement = new Vector2(moveHorizontal, moveVertical).normalized;
+
+
+        Vector2 movement = new Vector2(horizontal, vertical).normalized;
         rb.velocity = movement * currentSpeed;
 
         // Shooting
-        if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
+        if (isFiring && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
             Shoot();
         }
 
-        if (moveHorizontal > 0) { mainSpriteRenderer.flipX = true; }
+        if (horizontal > 0) { mainSpriteRenderer.flipX = true; }
         else { mainSpriteRenderer.flipX = false; }
 
         // Handle speed boost timer
@@ -108,5 +111,29 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.yellow;
 
         Gizmos.DrawLine(transform.position, transform.forward * 5f);
+    }
+
+    public void MoveInput(Vector2 newMoveDirection)
+    {
+        horizontal = newMoveDirection.x;
+        vertical = newMoveDirection.y;
+    }
+    
+
+
+    public void OnMove(InputValue value)
+    {
+        horizontal = value.Get<Vector2>().x;
+        vertical = value.Get<Vector2>().y;
+    }
+
+    private void OnFire(InputValue value) 
+    {
+        isFiring = value.isPressed;
+    }
+
+    public void FireInput(bool value)
+    {
+        isFiring = value;
     }
 }

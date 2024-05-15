@@ -279,7 +279,14 @@ PlayerSettings:
   AndroidMinifyDebug: 0
   AndroidValidateAppBundleSize: 1
   AndroidAppBundleSizeToValidate: 150
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: d18449d7be6f1014289a94a9220da99b, type: 3}
+      m_Width: 128
+      m_Height: 128
+      m_Kind: 0
   m_BuildTargetPlatformIcons:
   - m_BuildTarget: Android
     m_Icons:
@@ -696,7 +703,7 @@ PlayerSettings:
   managedStrippingLevel: {}
   incrementalIl2cppBuild: {}
   suppressCommonWarnings: 1
-  allowUnsafeCode: 0
+  allowUnsafeCode: 1
   useDeterministicCompilation: 1
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
@@ -707,14 +714,25 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: BirdVCamel
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: GCTC
+  metroCertificateIssuer: GCTC
+  metroCertificateNotAfter: 00f1ee5635c5db01
   metroApplicationDescription: BirdVCamel
-  wsaImages: {}
-  metroTileShortName: BirdVCamel
+  wsaImages:
+    65636: Assets/Title/Scale100%44.png
+    65661: Assets/Title/Scale125.png
+    65686: Assets/Title/Scale150.png
+    65736: Assets/Title/Scale200.png
+    65936: Assets/Title/Scale205.png
+    131272: Assets/Title/243.png
+    2031640: Assets/Title/555555555.png
+    2031816: Assets/Title/666666.png
+    2097352: Assets/Title/weweewweewewwe.png
+    2162888: Assets/Title/yuyuyuyuyuyuyuyuyuyuyuyuyuyuyu.png
+    2293960: Assets/Title/65566565.png
+  metroTileShortName: BvC
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
@@ -778,7 +796,7 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 0
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0
